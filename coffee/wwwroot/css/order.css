@@ -144,6 +144,11 @@ body > .row {
     padding: 12px 20px 15px;
 }
 
+    #billDetail .topBtn {
+        padding: .75rem;
+        border-bottom: 1px solid #dee2e6;
+    }
+
     #billDetail .sell-item-list {
         height: 75vh;
         overflow-y: auto;

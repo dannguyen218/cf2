@@ -28,6 +28,7 @@ namespace coffee
             services.AddScoped<ICataloges, CatalogesRepository>();
             services.AddScoped<IProducts, ProductsRepository>();
             services.AddScoped<IOrder, OrderRepository>();
+            services.AddScoped<ICharts, ChartsRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -57,11 +58,18 @@ namespace coffee
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Order}/{action=Index}");
             });
         }
     }

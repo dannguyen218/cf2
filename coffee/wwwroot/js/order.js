@@ -6,47 +6,33 @@ var orderList = [];
 var billDetail;
 
 $('#billDetail .discard').click(function () {
+    successOrder();
+});
+
+function successOrder() {
     orderItem = [];
     orderList = [];
     $("#billDetail .sell-item-list").html("");
     $("#billDetail .detail-section-note input").val("");
     $("#billDetail .table tbody .text-right").html("0 VND");
     $("#billDetail .green-meadow .float-right").html("0 VND");
-});
+}
 
 $('#billDetail .detail-section button').click(function () {
     let note = $('#billDetail .detail-section-note input').val();
-    console.log(note);
-    console.log(orderList);
-    console.log(total);
-    //$.ajax({
-    //    url: PostOrder,
-    //    method: 'POST',
-    //    traditional: true,
-    //    data: orderList, // <=== !!
-    //    contentType: "application/json; charset=utf-8",
-    //}).done(function (data, textStatus, xhr) {
-    //    console.log(data);
-    //    console.log("OK");
-    //}).fail(function (data) {
-    //    console.log(data);
-    //    console.log("Lỗi Thanh Toán");
-    //});
 
     $.ajax({
         url: "api/OrderAPI",
         type: 'POST',
-        //data: JSON.stringify([{ "price": 1, "quantity": 2 }, { "price": 3, "quantity": 4  }]),
-        data: JSON.stringify({orderList: orderList, note: note}),
+        data: JSON.stringify({ orderList: orderList, note: note, total: total }),
         contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data) {
-            console.log(data);
-        },
-        error: function (xhr, status, err) {
-            console.log(xhr);
-        }
-    });
+        dataType: "json"
+    }).done(function () {
+        showSuccessbyAlert("Order Thành Công");
+        successOrder();
+    }).fail(function () {
+        console.log("Lỗi order");
+    })
 });
 
 function animationGrid() {

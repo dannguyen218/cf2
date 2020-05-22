@@ -8,6 +8,10 @@ namespace coffee.Services
 {
     public interface IOrder
     {
-        void AddBill_BillDetail(dynamic item, string note);
+        int AddBill(string created_by, dynamic order);
+
+        void AddBillDetail(int BillsId, dynamic order);
+
+        void EditBill(decimal @total_money, int id);
     }
 }

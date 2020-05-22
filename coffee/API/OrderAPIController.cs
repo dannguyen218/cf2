@@ -14,6 +14,7 @@ namespace coffee.API
     public class OrderAPIController : ControllerBase
     {
         private readonly IOrder _orderRepository;
+        private int BillsId;
 
         public OrderAPIController(IOrder orderRepository)
         {
@@ -49,16 +50,26 @@ namespace coffee.API
         //    return Ok(model);
         //}
 
+        //[HttpPost]
+        //public ActionResult PostOrder([FromBody] dynamic model)
+        //{
+        //    foreach (dynamic item in model.orderList)
+        //    {
+        //        item.created_by = "dan";
+        //        string note = model.note;
+        //        _orderRepository.AddBill_BillDetail(item, note);
+        //    }
+        //    return Ok(model);
+        //}
+
         [HttpPost]
-        public ActionResult PostOrder([FromBody] dynamic model)
+        public ActionResult PostOrder([FromBody] dynamic order)
         {
-            foreach (dynamic item in model.orderList)
-            {
-                item.created_by = "dan";
-                string note = model.note;
-                _orderRepository.AddBill_BillDetail(item, note);
-            }
-            return Ok(model);
+            BillsId = _orderRepository.AddBill("dan", order);
+            _orderRepository.AddBillDetail(BillsId, order);
+            decimal total = order.total;
+            _orderRepository.EditBill(total, BillsId);
+            return NoContent();
         }
     }
 }
