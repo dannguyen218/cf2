@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/order.css">
+</head>
+<body>
+    <div class="container">
+        <section class="portfolio section">
+                @*<div class="filters">
+                    <ul>
+                        <li class="active" data-filter="*">All</li>
+                        <li data-filter=".corporate" class="">Corporate</li>
+                        <li data-filter=".personal" class="">Personal</li>
+                        <li data-filter=".agency" class="">Agency</li>
+                        <li data-filter=".4" class="">4</li>
+                    </ul>
+                </div>*@
+
+                <div class="filters">
+                    <ul>
+                        <li data-filter="*" class="active">All</li>
+                        <li data-filter=".corporate" class="">Corporate</li>
+                        <li data-filter=".personal" class="">Personal</li>
+                        <li data-filter=".agency" class="">Agency</li>
+                        <li data-filter=".4" class="">4</li>
+                    </ul>
+                </div>
+
+                <div class="filters-content">
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Worksssssssssssssssssssss 1 ssssssssssssssssssssssssssssssss</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="http://themes.muffingroup.com/betheme/documentation/doc-images/muffin-options/custom-js.png" alt="Work 1">
+                        <div class="p-inner">
+                            <h5>Work 1</h5>
+                            <div class="cat">4</div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        
+
+    </div>
+
+
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+    <script type="text/javascript">
+       var GetCataloge = "@Url.Action("GetAllCataloge", "CatalogesAPI")";
+       var GetProduct = "@Url.Action("GetAllProducts", "ProductsAPI")";
+    </script>
+    <script src="~/js/order.js"></script>
+</body>
+</html>
