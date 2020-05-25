@@ -14,5 +14,11 @@ namespace coffee.Controllers
         {
             return View();
         }
+
+        [HttpGet("test")]
+        public IActionResult test()
+        {
+            return View();
+        }
     }
 }

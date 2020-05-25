@@ -10,13 +10,13 @@ namespace coffee.Repository
 {
     public class ChartsRepository : ICharts
     {
-        private string get_charts;
+        private string sql;
         public List<int> GetChart7Day()
         {
-            get_charts = "GetChart7Day";
+            sql = "GetChart7Day";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-                      conn => conn.Query<int>(get_charts, commandType: CommandType.StoredProcedure)).ToList();
+                      conn => conn.Query<int>(sql, commandType: CommandType.StoredProcedure)).ToList();
             return query;
         }
     }

@@ -8,26 +8,23 @@ namespace coffee.Repository
 {
     public class CatalogesRepository : ICataloges
     {
-        private string get_Cataloges;
-        private string add_Cataloges;
-        private string edit_Cataloges;
-        private string remove_Cataloges;
+        private string sql;
 
         public dynamic GetAllCataloges()
         {
-            get_Cataloges = "GetAllCataloges";
+            sql = "GetAllCataloges";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-                      conn => conn.Query(get_Cataloges, commandType: CommandType.StoredProcedure));
+                      conn => conn.Query(sql, commandType: CommandType.StoredProcedure));
             return query;
         }
 
         public dynamic AddCataloges(Cataloges cataloges)
         {
-            add_Cataloges = "AddCataloges";
+            sql = "AddCataloges";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-           conn => conn.Query(add_Cataloges,
+           conn => conn.Query(sql,
                     new
                     {
                         cataloges.name,
@@ -38,10 +35,10 @@ namespace coffee.Repository
 
         public dynamic EditCataloges(int id, Cataloges cataloges)
         {
-            edit_Cataloges = "EditCataloges";
+            sql = "EditCataloges";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-           conn => conn.Query(edit_Cataloges,
+           conn => conn.Query(sql,
                     new
                     {
                         cataloges.name,
@@ -53,11 +50,11 @@ namespace coffee.Repository
 
         public void RemoveCataloges(int id, string username)
         {
-            remove_Cataloges = "RemoveCataloges";
+            sql = "RemoveCataloges";
 
             SQLUtils.ExecuteCommand(SQLUtils._connStr, conn =>
             {
-                var query = conn.Query<Cataloges>(remove_Cataloges,
+                var query = conn.Query<Cataloges>(sql,
                     new
                     {
                         username,

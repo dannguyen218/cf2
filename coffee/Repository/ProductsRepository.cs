@@ -8,35 +8,32 @@ namespace coffee.Repository
 {
     public class ProductsRepository : IProducts
     {
-        private string get_Products;
-        private string add_Products;
-        private string edit_Products;
-        private string remove_Products;
+        private string sql;
 
         public dynamic GetAllProducts()
         {
-            get_Products = "GetAllProducts";
+            sql = "GetAllProducts";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-                      conn => conn.Query(get_Products, commandType: CommandType.StoredProcedure));
+                      conn => conn.Query(sql, commandType: CommandType.StoredProcedure));
             return query;
         }
 
         public dynamic GetAllProductsByCataloges(int CatalogesId)
         {
-            get_Products = "GetAllProductsByCataloges";
+            sql = "GetAllProductsByCataloges";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-                      conn => conn.Query(get_Products, new { CatalogesId }, commandType: CommandType.StoredProcedure));
+                      conn => conn.Query(sql, new { CatalogesId }, commandType: CommandType.StoredProcedure));
             return query;
         }
 
         public dynamic AddProducts(Products products)
         {
-            add_Products = "AddProducts";
+            sql = "AddProducts";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-           conn => conn.Query(add_Products,
+           conn => conn.Query(sql,
                     new
                     {
                         products.name,
@@ -51,10 +48,10 @@ namespace coffee.Repository
 
         public dynamic EditProducts(int id, Products products)
         {
-            edit_Products = "EditProducts";
+            sql = "EditProducts";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-           conn => conn.Query(edit_Products,
+           conn => conn.Query(sql,
                     new
                     {
                         products.name,
@@ -70,11 +67,11 @@ namespace coffee.Repository
 
         public void RemoveProducts(int id, string username)
         {
-            remove_Products = "RemoveProducts";
+            sql = "RemoveProducts";
 
             SQLUtils.ExecuteCommand(SQLUtils._connStr, conn =>
             {
-                var query = conn.Query<Cataloges>(remove_Products,
+                var query = conn.Query<Cataloges>(sql,
                     new
                     {
                         username,

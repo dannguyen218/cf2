@@ -132,7 +132,7 @@ function getList() {
             {
                 title: "Giá bán", data: 'price',
                 render: function (data, type, row, meta) {
-                    return addCommas(data) + " vnđ";
+                    return addCommas(data) + " VND";
                 }
             },
             { title: "Đơn vị tính", data: 'unit' },

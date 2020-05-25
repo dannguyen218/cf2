@@ -29,6 +29,7 @@ namespace coffee
             services.AddScoped<IProducts, ProductsRepository>();
             services.AddScoped<IOrder, OrderRepository>();
             services.AddScoped<ICharts, ChartsRepository>();
+            services.AddScoped<IStatistical, StatisticalRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
