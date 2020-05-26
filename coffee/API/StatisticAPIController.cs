@@ -33,5 +33,12 @@ namespace coffee.API
             result = _statisticalRepository.GetBillDetailsByBill(BillsId);
             return Ok(result);
         }
+
+        [HttpGet("date/{StartDate}/{EndDate}")]
+        public IActionResult GetAllBillsByDate(string StartDate, string EndDate)
+        {
+            result = _statisticalRepository.GetAllBillsByDate(StartDate, EndDate);
+            return Ok(result);
+        }
     }
 }
