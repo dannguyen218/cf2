@@ -1,6 +1,9 @@
-﻿using coffee.Services;
+﻿using coffee.Models.temp;
+using coffee.Services;
 using Dapper;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace coffee.Repository
 {
@@ -8,12 +11,12 @@ namespace coffee.Repository
     {
         private string sql;
 
-        public dynamic GetAllBills()
+        public List<BillsTemp> GetAllBills()
         {
             sql = "GetAllBills";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-                      conn => conn.Query(sql, commandType: CommandType.StoredProcedure));
+                      conn => conn.Query<BillsTemp>(sql, commandType: CommandType.StoredProcedure)).ToList();
             return query;
         }
 
