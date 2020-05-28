@@ -398,6 +398,11 @@ body > .row {
     box-shadow: 0 1px 3px rgba(125, 116, 116, 0.1), 0 1px 3px rgba(0, 0, 0, 0.79) !important;
 }
 
+input[type="text"]:focus {
+    border: 1px solid #2bbdb9;
+    outline: none;
+}
+
 @media screen and (max-width: 1300px) {
     .section.portfolio .filters-content .item {
         width: 22.4% !important;

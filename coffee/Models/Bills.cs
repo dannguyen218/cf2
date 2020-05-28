@@ -12,7 +12,7 @@ namespace coffee.Models
     {
         public int id { get; set; }
         public DateTime? time_payment { get; set; }
-        [Column(TypeName = "decimal(8,0)")]
+        [Column(TypeName = "decimal(15,0)")]
         public decimal total_money { get; set; } = 0;
         [MaxLength(255)]
         public string note { get; set; }

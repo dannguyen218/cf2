@@ -7,10 +7,10 @@ namespace coffee.Models
     public class BillDetails
     {
         public int id { get; set; }
-        [Column(TypeName = "decimal(8,0)")]
+        [Column(TypeName = "decimal(15,0)")]
         public decimal price { get; set; } = 0;
         public int quantity { get; set; } = 0;
-        [Column(TypeName = "decimal(8,0)")]
+        [Column(TypeName = "decimal(15,0)")]
         public decimal total { get; set; } = 0;
 
         public int ProductsId { get; set; }

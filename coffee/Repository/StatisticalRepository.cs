@@ -33,17 +33,17 @@ namespace coffee.Repository
             return query;
         }
 
-        public dynamic GetAllBillsByDate(string StartDate, string EndDate)
+        public List<BillsTemp> GetAllBillsByDate(string StartDate, string EndDate)
         {
             sql = "GetAllBillsByDate";
 
             var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
-                      conn => conn.Query(sql,
+                      conn => conn.Query<BillsTemp>(sql,
                     new
                     {
                         StartDate,
                         EndDate
-                    }, commandType: CommandType.StoredProcedure));
+                    }, commandType: CommandType.StoredProcedure)).ToList();
             return query;
         }
     }

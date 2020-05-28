@@ -6,7 +6,12 @@
         '</table>';
 }
 var table;
+var excelUrl = "/excel";
 $(document).ready(function () {
+    $("#excelBtn").on("click", function (e) {
+        e.preventDefault(); // cancel the link itself
+        location.replace(excelUrl);
+    });
     // Main table
     table = $('#tbBills').DataTable({
         responsive: true,
@@ -42,9 +47,14 @@ $(document).ready(function () {
                 defaultContent: ''
             },
             { data: "id" },
-            { data: "time_payment" },
             { data: "created_by" },
             { data: "note" },
+            {
+                data: "time_payment",
+                render: function (data, type, row) {
+                    return moment(data).format("DD-MM-YYYY HH:mm:ss");
+                }
+            },
             {
                 data: "total_money",
                 render: function (data, type, row, meta) {
@@ -141,8 +151,6 @@ function childTable() {
     });
 }
 
-
-
 $("#dateRangepicker").val(moment().format('DD/MM/YYYY'));
 $("#dateRangepicker").daterangepicker({
     ranges: {
@@ -203,9 +211,14 @@ function GetAllBillsByDate(StartDate, EndDate) {
                 defaultContent: ''
             },
             { data: "id" },
-            { data: "time_payment" },
             { data: "created_by" },
             { data: "note" },
+            {
+                data: "time_payment",
+                render: function (data, type, row) {
+                    return moment(data).format("DD-MM-YYYY HH:mm:ss");
+                }
+            },
             {
                 data: "total_money",
                 render: function (data, type, row, meta) {
@@ -219,6 +232,7 @@ function GetAllBillsByDate(StartDate, EndDate) {
                 sum += parseInt($(this).text().replace(/\.|VND| /gi, ""));
             });
             $("#revenue").html(addCommas(sum) + " VND");
+            excelUrl = `/excel/${StartDate}/${EndDate}`;
         }
     });
 }

@@ -10,6 +10,7 @@ $('#billDetail .discard').click(function () {
 });
 
 function successOrder() {
+    total = 0;
     orderItem = [];
     orderList = [];
     $("#billDetail .sell-item-list").html("");

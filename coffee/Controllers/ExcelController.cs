@@ -424,32 +424,98 @@ namespace coffee.Controllers
 
 
 
-
-        public IActionResult Index()
+        [HttpGet("excel/{startDate?}/{endDate?}")]
+        public IActionResult Index(string startDate, string endDate)
         {
-            bills = _statisticalRepository.GetAllBills();
+            var title = "";
+            if (startDate == null)
+                bills = _statisticalRepository.GetAllBills();
+            else
+            {
+                if (startDate.Equals(endDate))
+                    title = " NGÀY " + Convert.ToDateTime(startDate).ToString("dd-MM-yyyy");
+                else
+                    title = " TỪ " + Convert.ToDateTime(startDate).ToString("dd-MM-yyyy") + " ĐẾN " + Convert.ToDateTime(endDate).ToString("dd-MM-yyyy");
+                bills = _statisticalRepository.GetAllBillsByDate(startDate, endDate);
+            }
+
+
             byte[] fileContents;
             using (var package = new ExcelPackage())
             {
-                var ws = package.Workbook.Worksheets.Add("SheetA");
+                var ws = package.Workbook.Worksheets.Add("Sheet1");
+                var titlePosition = "B2:F3";
+                var datePosition = "B5:D5";
+                var tablePosition = "B6";
 
                 // Create table from dataTable with header
-                ws.Cells["B2"].LoadFromCollection(bills, true, TableStyles.Medium14);
+                ws.Cells[tablePosition].LoadFromCollection(bills, true, TableStyles.Medium14);
                 //ws.Cells[2, 2].LoadFromCollection(cata, true, TableStyles.Medium6);
+
+                ws.Cells[titlePosition].Merge = true;
+                ws.Cells[titlePosition].Value = "THỐNG KÊ DOANH THU" + title;
+                ws.Cells[titlePosition].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells[titlePosition].Style.Font.Size = 20;
+                ws.Cells[titlePosition].Style.Font.Bold = true;
+
+                ws.Cells[datePosition].Merge = true;
+                ws.Cells["B5"].Value = "Ngày tạo: " + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+
+                var tableFirstRow = 7;
+                var tableLastRow = ws.Dimension.End.Row;
+                var totalIndex = tableLastRow + 1;
+
+                for (int i = tableFirstRow; i < totalIndex; i++)
+                {
+                    using (ExcelRange Rng = ws.Cells["D" + i])
+                    {
+                        if (!string.IsNullOrEmpty(Rng.Text))
+                        {
+                            //string[] commentWords = Rng.Value.ToString().Split(' ');
+                            //Rng.Value = commentWords[0] + "...";
+
+                            //string comment = string.Join(Environment.NewLine, commentWords
+                            //    .Select((word, index) => new { word, index })
+                            //    .GroupBy(x => x.index / 4)
+                            //    .Select(grp => string.Join(" ", grp.Select(x => x.word)))
+                            //    );
+
+
+                            //ExcelComment cmd = Rng.AddComment(comment, "Apt. Notes");
+                            ExcelComment cmd = Rng.AddComment(Rng.Value.ToString(), "Apt. Notes");
+                            //cmd.AutoFit = true;
+                        }
+                    }
+
+                };
 
                 ws.Column(5).Style.Numberformat.Format = "dd-MM-yyyy HH:mm:ss";
                 ws.Column(6).Style.Numberformat.Format = "#,##0 [$VND]";
-                var dataLength = bills.Count;
-                ws.Cells["B" + (dataLength + 3)].Value = "Tổng Cộng";
-                ws.Cells["F" + (dataLength + 3)].Formula = "=SUM(F3:F" + (dataLength + 2) + ")";
-                ws.Cells["B" + dataLength + ":F" + dataLength].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                ws.Cells["B" + dataLength + ":F" + dataLength].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(112, 173, 71));
-                ws.Cells["B" + dataLength + ":F" + dataLength].Style.Font.Color.SetColor(Color.White);
-                ws.Cells["B" + dataLength + ":F" + dataLength].Style.Font.Bold = true;
+
+                ws.Cells["B" + totalIndex].Value = "Tổng Cộng";
+                ws.Cells["F" + totalIndex].Formula = "=SUM(F" + tableFirstRow + ":F" + (totalIndex - 1) + ")";
+                ws.Cells["B" + totalIndex + ":F" + totalIndex].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                ws.Cells["B" + totalIndex + ":F" + totalIndex].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(112, 173, 71));
+                ws.Cells["B" + totalIndex + ":F" + totalIndex].Style.Font.Color.SetColor(Color.White);
+                ws.Cells["B" + totalIndex + ":F" + totalIndex].Style.Font.Bold = true;
+
+                ws.Cells["B" + tableFirstRow + ":B" + totalIndex].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells["E" + tableFirstRow + ":E" + totalIndex].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[tablePosition + ":F6"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                ws.Cells[tablePosition].Value = "#";
+                for (int i = 0; i < bills.Count(); i++)
+                {
+                    ws.Cells["B" + (tableFirstRow + i)].Value = i + 1;
+                }
 
                 // Autofit Columns               
                 ws.Cells[ws.Dimension.Address].AutoFitColumns();
-
+                for (int col = 1; col <= ws.Dimension.End.Column; col++)
+                {
+                    ws.Column(col).Width = ws.Column(col).Width + 2;
+                }
+                ws.Cells["D7"].AutoFitColumns(50.00, 60.00);
                 // Send to browser
                 fileContents = package.GetAsByteArray();
             }

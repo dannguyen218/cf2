@@ -12,6 +12,6 @@ namespace coffee.Services
 
         dynamic GetBillDetailsByBill(int BillsId);
 
-        dynamic GetAllBillsByDate(string StartDate, string EndDate);
+        List<BillsTemp> GetAllBillsByDate(string StartDate, string EndDate);
     }
 }

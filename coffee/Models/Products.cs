@@ -16,7 +16,7 @@ namespace coffee.Models
         [MinLength(3)]
         public string name { get; set; }
         public string images { get; set; }
-        [Column(TypeName = "decimal(8,0)")]
+        [Column(TypeName = "decimal(15,0)")]
         public decimal price { get; set; } = 0;
         [Required(ErrorMessage = "Vui lòng nhập đơn vị sản phẩm")]
         [MaxLength(100)]
