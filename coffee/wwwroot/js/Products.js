@@ -207,7 +207,7 @@ function getEditInfo(rowIndex) {
     });
     $("#ename").val(arr[1]);
     $("#eCatalogeId option:contains(" + arr[2] + ")").attr('selected', 'selected');
-    $("#eprice").val(arr[3].replace(/\.|vnđ| /gi, ""));
+    $("#eprice").val(arr[3].replace(/\.|VND| /gi, ""));
     $("#eunit").val(arr[4]);
     $("#eblah").attr('src', $("#tbList tr:eq(" + rowIndex + ") td:eq(5) img").attr("src"));
     $('#eblah').css('opacity', 1);

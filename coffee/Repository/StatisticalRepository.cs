@@ -46,5 +46,51 @@ namespace coffee.Repository
                     }, commandType: CommandType.StoredProcedure)).ToList();
             return query;
         }
+
+        public List<ProductsTemp> GetTopProducts()
+        {
+            sql = "GetTopProducts";
+
+            var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
+                      conn => conn.Query<ProductsTemp>(sql, commandType: CommandType.StoredProcedure)).ToList();
+            return query;
+        }
+
+        public List<ProductsTemp> GetTopProductsByDate(string StartDate, string EndDate)
+        {
+            sql = "GetTopProductsByDate";
+
+            var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
+                      conn => conn.Query<ProductsTemp>(sql,
+                    new
+                    {
+                        StartDate,
+                        EndDate
+                    }, commandType: CommandType.StoredProcedure)).ToList();
+            return query;
+        }
+
+        public List<CatalogesTemp> GetTopCataloges()
+        {
+            sql = "GetTopCataloges";
+
+            var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
+                      conn => conn.Query<CatalogesTemp>(sql, commandType: CommandType.StoredProcedure)).ToList();
+            return query;
+        }
+
+        public List<CatalogesTemp> GetTopCatalogesByDate(string StartDate, string EndDate)
+        {
+            sql = "GetTopCatalogesByDate";
+
+            var query = SQLUtils.ExecuteCommand(SQLUtils._connStr,
+                      conn => conn.Query<CatalogesTemp>(sql,
+                    new
+                    {
+                        StartDate,
+                        EndDate
+                    }, commandType: CommandType.StoredProcedure)).ToList();
+            return query;
+        }
     }
 }
