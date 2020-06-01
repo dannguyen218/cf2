@@ -1,4 +1,4 @@
-﻿* {
+﻿/** {
     box-sizing: border-box
 }
 
@@ -52,4 +52,68 @@
 
 .table td, .table th {
     width: auto !important;
+}*/
+
+.table-controls {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
+
+    .table-controls > li {
+        display: inline-block;
+        margin: 0 2px;
+        line-height: 1;
+    }
+
+        .table-controls > li > a {
+            display: inline-block;
+        }
+
+            .table-controls > li > a i {
+                margin: 0;
+                color: #555;
+                font-size: 16px;
+                display: block;
+            }
+
+                .table-controls > li > a i:hover {
+                    text-decoration: none;
+                }
+
+
+tbody .table-controls li:hover .row-edit {
+    color: #41de1a;
+    fill: rgba(0, 23, 55, 0.08);
+}
+tbody .table-controls li:hover .row-delete {
+    color: #e7515a;
+    fill: rgba(0, 23, 55, 0.08);
+}
+
+.edit-cancel:hover {
+    color: #e551e7;
+    fill: rgba(0, 23, 55, 0.08);
+}
+
+.edit-ok:hover {
+    color: #63c0f7;
+    fill: rgba(0, 23, 55, 0.08);
+}
+
+
+.table td, .form-group label:first-child{
+    color: black !important;
+}
+.error {
+    color: #dc3545 !important;
+}
+
+input.error {
+    border: 1px solid #dc3545 !important;
+}
+
+
+    .table td svg {
+        /*fill: rgba(0, 23, 55, 0.08);*/
+    }

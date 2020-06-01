@@ -1,146 +1,37 @@
-﻿@*@{
-        ViewData["Title"] = "Index";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-
-    @{
-        ViewData["Title"] = "Index";
-    }
-
-    @section css{
-        <link rel="stylesheet" href="~/css/custom-style.css">
-        <link rel="stylesheet" href="~/css/style.css">
-    }
-
-
-    <section class="content-header">
-        <div class="input-group mb-3">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Tạo Danh Mục Mới</h5>
-                </div>
-                <form id="formCreate" class="card-body">
-                    <input type="text" id="item" name="item" class="form-control col-sm-9 mr-3" placeholder="Tên Danh Mục Mới" aria-label="New Product" aria-describedby="button-addon2">
-                    <button class="btn btn-primary col-sm-2 border-0 mb-2" type="submit" id="button-addon5"><i class="fa fa-plus create-btn"></i>Tạo</button>
-                </form>
-            </div>
-        </div>
-
-        <h5>Danh Sách Danh Mục</h5>
-
-    </section>
-
-    <section class="content">
-        <table id="dtProducts" class="table table-striped border-top-0" cellspacing="0" width="100%">
-            <thead>
-                <tr class="border-top-0">
-                    <th scope="col">#</th>
-                    <th scope="col">Tên Danh Mục</th>
-                    <th scope="col"></th>
-                    <th scope="col"><span id="countItem" class="text-danger"></span></th>
-                </tr>
-            </thead>
-            <tbody id="tbList"></tbody>
-        </table>
-    </section>
-
-    @section scripts{
-        <script type="text/javascript" src="~/AdminLTE-3.0.4/plugins/jquery-validation/jquery.validate.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="~/js/lib.js"></script>
-        <script type="text/javascript">
-           var GetCataloge = "@Url.Action("GetAllCataloge", "CatalogesAPI")";
-        </script>
-        <script src="~/js/Cataloge.js"></script>
-    }*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@{
-    ViewData["Title"] = "Index";
-}
-
 @section css{
-    <link rel="stylesheet" href="~/css/custom-style.css">
     <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/cataloges.css">
 }
 
-@*<section class="content-header">
-        <div class="input-group mb-3">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Tạo Danh Mục Mới</h5>
-                </div>
-                <form id="formCreate" class="card-body">
-                    <input type="text" id="item" name="item" class="form-control col-sm-9 mr-3" placeholder="Tên Danh Mục Mới" aria-label="New Product" aria-describedby="button-addon2">
-                    <button class="btn btn-primary col-sm-2 border-0 mb-2" type="submit" id="button-addon5"><i class="fa fa-plus create-btn"></i>Tạo</button>
-                </form>
-            </div>
-        </div>
-
-        <h5>Danh Sách Danh Mục</h5>
-
-    </section>*@
-
-<section class="content">
-    <div class="row">
-        <div class="col-12">
-            <div class="card" style="margin-top: 40px;">
-                <div class="card-header">
-                    <h2>Danh Sách Danh Mục</h2>
-                </div>
-
-                <div class="card-body table-responsive" style="padding-top: 0;">
-                    <table id="example1" class="table table-bordered table-striped" style="width: 100%">
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th style="width: 80%;">Tên danh mục</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbList"></tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+<div class="page-header">
+    <div class="page-title">
+        <h3>Danh Sách Danh Mục</h3>
     </div>
-    <!-- /.row -->
-</section>
+</div>
+
+<div class="row layout-top-spacing" id="cancel-row">
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-4">
+                <table id="zero-config" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="no-content"></th>
+                            <th>Tên danh mục</th>
+                            <th class="no-content width6Percent"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbList"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 @section scripts{
     <script type="text/javascript" src="~/AdminLTE-3.0.4/plugins/jquery-validation/jquery.validate.min.js"></script>
@@ -151,6 +42,5 @@
     </script>
     <script src="~/js/Cataloge.js"></script>
 }
-
 
 

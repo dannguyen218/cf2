@@ -21,101 +21,119 @@
     </style>
 }
 
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Thống Kê</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Thống Kê</li>
-                </ol>
+@*<section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thống Kê</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Thống Kê</li>
+                    </ol>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>*@
 
-<section class="content">
-    <div class="row">
-        <div class="col-3">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Tìm theo khoảng ngày</h3>
-                </div>
-                <div class="card-body">
-                    <!-- Date range -->
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control float-right" id="dateRangepicker">
-                            @*<button class="text-muted" id="dateRangepickerBtn">
-                                    <i class="fas fa-search"></i>
-                                </button>*@
+<div class="page-header">
+    <div class="page-title">
+        <h3>Thống Kê</h3>
+    </div>
+</div>
+
+
+
+<div class="row layout-top-spacing" id="cancel-row">
+    <div class="col-xl-12 col-lg-12 col-sm-12">
+        <div class="widget-content widget-content-area br-6">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Tìm theo khoảng ngày</h3>
                         </div>
-                        <!-- /.input group -->
+                        <div class="card-body">
+                            <!-- Date range -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control float-right" id="dateRangepicker">
+                                    @*<button class="text-muted" id="dateRangepickerBtn">
+                                <i class="fas fa-search"></i>
+                            </button>*@
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.form group -->
                 </div>
-                <!-- /.card-body -->
+
+
+                <div class="col-3">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Doanh thu</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- Date range -->
+                            <div class="form-group">
+                                <h2 id="revenue"></h2>
+                            </div>
+                            <!-- /.form group -->
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
             </div>
         </div>
-
-
-        <div class="col-3">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Doanh thu</h3>
-                </div>
-                <div class="card-body">
-                    <!-- Date range -->
-                    <div class="form-group">
-                        <h2 id="revenue"></h2>
-                    </div>
-                    <!-- /.form group -->
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Hóa đơn</h3>
+
+</div>
+
+
+<div class="row layout-top-spacing" id="cancel-row">
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="row">
+                <div class="col-10">
+                    <h4>Hóa Đơn</h4>
+                </div>
+                <div class="col-2">
                     <a class="btn btn-primary border-0 float-right" href="javascript:;" id="excelBtn">
-                        <i class="fas fa-download" style="margin-right: 8px;"></i>Xuất excel
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Xuất excel
                     </a>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive" style="padding-top: 0;">
-                    <table id="tbBills" class="table" style="width: 100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Id</th>
-                                <th>Thu ngân</th>
-                                <th>Ghi chú</th>
-                                <th>Thời gian thanh toán</th>
-                                <th>Tổng tiền</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <!-- /.card-body -->
+            </div>
+            <div class="table-responsive mb-4 mt-4">
+                <table id="zero-config" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="no-content"></th>
+                            <th>Id</th>
+                            <th>Thu ngân</th>
+                            <th>Ghi chú</th>
+                            <th>Thời gian thanh toán</th>
+                            <th>Tổng tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbList"></tbody>
+                </table>
             </div>
         </div>
-
-        <!-- /.col -->
     </div>
-    <!-- /.row -->
-</section>
+
+</div>
+
+
 
 
 

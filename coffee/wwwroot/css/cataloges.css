@@ -1,0 +1,22 @@
+﻿body {
+}
+#zero-config_wrapper .row:nth-child(3) {
+    position: relative;
+}
+
+#zero-config_length {
+    position: absolute;
+    right: 0;
+    top: -43%;
+}
+
+#zero-config {
+    table-layout: fixed;
+}
+.width6Percent {
+    width: 6%;
+}
+
+#editForm input {
+    border: 1px solid #9cb0e2;
+}

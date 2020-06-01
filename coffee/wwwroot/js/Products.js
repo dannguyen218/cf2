@@ -12,6 +12,7 @@ function getCataloges() {
 
 function openAddProduct() {
     $('#addProduct').modal('show');
+    $(".form-group input").removeClass("error");
     getCataloges().done(function (data) {
         let str = '';
         $.each(data, function (index, value) {
@@ -91,25 +92,33 @@ function createProduct(formData) {
 }
 
 function getList() {
-    var t = $("#example1").DataTable({
+    var t = $("#zero-config").DataTable({
         "destroy": true,
         "responsive": true,
+        //"sDom": 'Rfrtipl',
+        //"dom": '<"top"f>rt<"bottom"ilp><"clear">',
         "ajax": {
             "url": GetProduct,
             "dataSrc": ""
         },
         "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "All"]],
+        "stripeClasses": [],
         "oLanguage": {
-
-            "sSearch": "Tìm kiếm:",
+            //"sSearch": "Tìm kiếm:",
             "sLengthMenu": "Hiển thị _MENU_ sản phẩm ",
             "sZeroRecords": "Không có sản phẩm để hiển thị",
+            //"oPaginate": {
+            //    "sPrevious": "Trang trước",
+            //    "sNext": "Trang kế tiếp",
+            //    "sLast": "Trang cuối cùng",
+            //    "sFirst": "Trang đầu tiên"
+            //},
             "oPaginate": {
-                "sPrevious": "Trang trước",
-                "sNext": "Trang kế tiếp",
-                "sLast": "Trang cuối cùng",
-                "sFirst": "Trang đầu tiên"
+                "sPrevious": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>`,
+                "sNext": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
             },
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "Tìm kiếm...",
             "sInfo": "Đang xem sản phẩm thứ _START_ tới _END_ trong _TOTAL_ sản phẩm",
             "sInfoEmpty": "Không có sản phẩm để hiển thị",
             "sInfoFiltered": " - lọc từ _MAX_ sản phẩm"
@@ -119,8 +128,9 @@ function getList() {
             {
                 "searchable": false,
                 "orderable": false,
-                "targets": [0, 5, 6, 7]
-            }
+                "targets": [0, 5, 6]
+            },
+            { className: "text-center", "targets": [6] }
         ],
         "order": [
             [1, 'asc']
@@ -141,24 +151,23 @@ function getList() {
                 data: { id: "id", images: "images" },
                 render: function (data, type, row, meta) {
                     if (data.images == "default.PNG")
-                        return `<img style='max-height:120px; max-width:120px;' src='/images/${data.images}'/>`;
+                        return `<img style='max-height:80px; max-width:80px;' src='/images/${data.images}'/>`;
                     else
-                        return `<img style='max-height:120px; max-width:120px;' src='/uploads/products/${data.id}/${data.images}' onerror='loadImageError(this)' />`;
+                        return `<img style='max-height:80px; max-width:80px;' src='/uploads/products/${data.id}/${data.images}' onerror='loadImageError(this)' />`;
                 }
             },
             {
                 data: 'id',
                 render: function (data, type, row, meta) {
-                    return `<a href = 'javascript:; ' onclick='openEditProduct(${data}, this)'><i class='fa fa-edit edit-btn'></i>Sửa</a>`;
+                    return `<ul class="table-controls">
+ <li><a href="javascript:void(0);" onclick='openEditProduct(${data}, this)' data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 row-edit"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a></li>
+                             <li><a href="javascript:void(0);" onclick='deleteItem(${data})' data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 row-delete"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a></li>
+                           </ul>`;
                 }
-            },
-            {
-                data: 'id',
-                render: function (data, type, row, meta) {
-                    return `<a href = 'javascript:; ' onclick='deleteItem(${data})'><i class='fa fa-trash-alt delete-btn'></i>Xóa</a>`;
-                }
-            }]
+            }
+        ]
     })
+    //$("#zero-config_length").css("float", "right");
 
     t.on('order.dt search.dt', function () {
         t.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
@@ -187,6 +196,7 @@ $("#frmEditProduct").submit(function (event) {
 
 function openEditProduct(id, e) {
     $('#showEdit').modal('show');
+    $(".form-group input").removeClass("error");
     getCataloges().done(function (data) {
         let str = '';
         $.each(data, function (index, value) {

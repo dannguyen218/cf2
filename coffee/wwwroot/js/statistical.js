@@ -13,24 +13,31 @@ $(document).ready(function () {
         location.replace(excelUrl);
     });
     // Main table
-    table = $('#tbBills').DataTable({
+    table = $('#zero-config').DataTable({
         responsive: true,
         ajax: {
             url: GetAllBills,
             dataSrc: ""
         },
         lengthMenu: [[5, 10, 50, -1], [5, 10, 50, "All"]],
+        "stripeClasses": [],
         oLanguage: {
 
-            sSearch: "Tìm kiếm:",
+            //sSearch: "Tìm kiếm:",
             sLengthMenu: "Hiển thị _MENU_ hóa đơn ",
             sZeroRecords: "Không có hóa đơn để hiển thị",
-            oPaginate: {
-                sPrevious: "Trang trước",
-                sNext: "Trang kế tiếp",
-                sLast: "Trang cuối cùng",
-                sFirst: "Trang đầu tiên"
+            //oPaginate: {
+            //    sPrevious: "Trang trước",
+            //    sNext: "Trang kế tiếp",
+            //    sLast: "Trang cuối cùng",
+            //    sFirst: "Trang đầu tiên"
+            //},
+            "oPaginate": {
+                "sPrevious": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>`,
+                "sNext": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
             },
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "Tìm kiếm...",
             sInfo: "Đang xem hóa đơn thứ _START_ tới _END_ trong _TOTAL_ hóa đơn",
             sInfoEmpty: "Không có hóa đơn để hiển thị",
             sInfoFiltered: " - lọc từ _MAX_ hóa đơn"
@@ -64,14 +71,14 @@ $(document).ready(function () {
         ],
         //initComplete: function () {
         //    var sum = 0;
-        //    $("#tbBills tbody tr").find("td:eq(5)").each(function () {
+        //    $("#zero-config tbody tr").find("td:eq(5)").each(function () {
         //        sum += parseInt($(this).text().replace(/\.|VND| /gi, ""));
         //    });
         //    $("#revenue").html(addCommas(sum) + " VND");
         //},
         drawCallback: function (settings) {
             var sum = 0;
-            $("#tbBills tbody tr").find("td:eq(5)").each(function () {
+            $("#zero-config tbody tr").find("td:eq(5)").each(function () {
                 sum += parseInt($(this).text().replace(/\.|VND| /gi, ""));
             });
             $("#revenue").html(addCommas(sum) + " VND");
@@ -83,7 +90,7 @@ $(document).ready(function () {
 
 function childTable() {
     // Add event listener for for main talbe to open and close first level child details
-    $('#tbBills tbody').on('click', 'td.main-table', function () {
+    $('#zero-config tbody').on('click', 'td.main-table', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         var rowData = row.data();
@@ -176,7 +183,7 @@ $("#dateRangepicker").daterangepicker({
 });
 
 function GetAllBillsByDate(StartDate, EndDate) {
-    table = $('#tbBills').DataTable({
+    table = $('#zero-config').DataTable({
         destroy: true,
         responsive: true,
         ajax: {
@@ -185,16 +192,14 @@ function GetAllBillsByDate(StartDate, EndDate) {
         },
         lengthMenu: [[5, 10, 50, -1], [5, 10, 50, "All"]],
         oLanguage: {
-
-            sSearch: "Tìm kiếm:",
             sLengthMenu: "Hiển thị _MENU_ hóa đơn ",
             sZeroRecords: "Không có hóa đơn để hiển thị",
-            oPaginate: {
-                sPrevious: "Trang trước",
-                sNext: "Trang kế tiếp",
-                sLast: "Trang cuối cùng",
-                sFirst: "Trang đầu tiên"
+            "oPaginate": {
+                "sPrevious": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>`,
+                "sNext": `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
             },
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "Tìm kiếm...",
             sInfo: "Đang xem hóa đơn thứ _START_ tới _END_ trong _TOTAL_ hóa đơn",
             sInfoEmpty: "Không có hóa đơn để hiển thị",
             sInfoFiltered: " - lọc từ _MAX_ hóa đơn"
@@ -228,7 +233,7 @@ function GetAllBillsByDate(StartDate, EndDate) {
         ],
         drawCallback: function (settings) {
             var sum = 0;
-            $("#tbBills tbody tr").find("td:eq(5)").each(function () {
+            $("#zero-config tbody tr").find("td:eq(5)").each(function () {
                 sum += parseInt($(this).text().replace(/\.|VND| /gi, ""));
             });
             $("#revenue").html(addCommas(sum) + " VND");

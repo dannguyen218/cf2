@@ -2,59 +2,47 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section css{
     <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/products.css">
 }
-@*<section class="content-header">
-        <div class="alert alert-success"></div>
 
-        <h1>Danh Sách Sản Phẩm</h1>
-
-        <a href="javascript:;" class="btn btn-primary btn-flat" onclick="openAddProduct()">
-            Tạo Mới Sản Phẩm
-        </a>
-
-    </section>*@
-<!-- Main content -->
-<section class="content">
-    <div class="row">
-        <div class="col-12">
-            <div class="card" style="margin-top: 40px;">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-10"><h2>Danh Sách Sản Phẩm</h2></div>
-                        <div class="col-2 d-flex flex-row-reverse">
-                            <a href="javascript:;" class="btn btn-primary btn-flat" onclick="openAddProduct()">
-                                Tạo Sản Phẩm Mới
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body table-responsive">
-                    <table id="example1" class="table table-bordered table-striped" style="width: 100%">
-                        @*<table id="example1" class="table table-bordered table-hover" style="width: 100%">*@
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Tên sản phẩm</th>
-                                <th>Danh mục sản phẩm</th>
-                                <th>Giá bán</th>
-                                <th>Đơn vị tính</th>
-                                <th>Ảnh sản phẩm</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbList"></tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- /.card-body -->
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Danh Sách Sản Phẩm</h3>
         </div>
-        <!-- /.card -->
+        <div style="margin-left: auto;">
+            <a href="javascript:;" class="btn btn-primary btn-flat" onclick="openAddProduct()" style="display: block">
+                Tạo Sản Phẩm Mới
+            </a>
+        </div>
     </div>
-    <!-- /.row -->
-</section>
+
+<div class="row layout-top-spacing" id="cancel-row">
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-4">
+                <table id="zero-config" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="no-content"></th>
+                            <th>Tên sản phẩm</th>
+                            <th>Danh mục sản phẩm</th>
+                            <th>Giá bán</th>
+                            <th>Đơn vị tính</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th class="no-content"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbList"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <!-- Modal -->
 <div id="addProduct" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -65,86 +53,6 @@
                     <h4 class="modal-title">Tạo Sản Phẩm Mới</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                @*<div class="modal-body">
-                        <div class="row form-group">
-                            <div class="col-6">
-                                <div class="col-11">
-                                    <div class="row">
-                                        <label>Tên sản phẩm</label>
-                                    </div>
-                                    <div class="row">
-
-                                        <input type="text" id="name" name="name" class="form-control" autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="col-11">
-                                    <div class="row">
-                                        <label>Danh mục sản phẩm</label>
-                                    </div>
-                                    <div class="row">
-
-                                        <select class="form-control browser-default custom-select" name="CatalogeId" id="CatalogeId" style="width:100%;"></select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-6">
-                                <div class="col-11">
-                                    <div class="row">
-                                        <label>Giá bán</label>
-                                    </div>
-                                    <div class="row">
-
-                                        <input type="text" id="price" name="price"
-                                               class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="col-11">
-                                    <div class="row">
-                                        <label>Đơn vị tính</label>
-                                    </div>
-                                    <div class="row">
-
-                                        <input type="text" id="unit" name="unit"
-                                               class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-6">
-                                <div class="col-11">
-                                    <div class="row">
-                                        <label>Ảnh sản phẩm</label>
-                                    </div>
-                                    <div class="row">
-
-                                        <input class="form-control" data-input="false" id="avatar" name="avatar" type="file" size="1" accept="image/*" data-type='image' style="width: 200px; height: 200px; opacity: 0; position:absolute; z-index:1000;" />
-                                        <div id="noimg" style="
-                                                display: flex;
-                                                width: 200px;
-                                                height: 200px;
-                                                border: 3px dashed #e3e3e3;">
-                                            <i class="fa fa-plus" style="
-                                                margin: auto;
-                                                font-size: 55px;
-                                                color: #c1c1c1;"></i>
-                                        </div>
-                                        <img id="blah">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>*@
 
                 <div class="modal-body">
                     <div class="row">
@@ -173,9 +81,9 @@
                             <div class="form-group" style="margin-bottom: 0">
                                 <label>Ảnh sản phẩm</label>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" id="avatar" name="avatar" type="file" size="1" accept="image/*" data-type="image" style="width: 97%;height: 295px;opacity: 0;position:absolute;z-index:1000;">
-                                <div id="noimg" style="display: flex;width: 100%;height: 295px;border: 3px dashed rgb(227, 227, 227);">
+                            <div>
+                                <input class="form-control" id="avatar" name="avatar" type="file" size="1" accept="image/*" data-type="image" style="width: 97%;height: 320px;opacity: 0;position:absolute;z-index:1000;">
+                                <div id="noimg" style="display: flex;width: 100%;height: 320px;border: 3px dashed rgb(227, 227, 227);">
                                     <i class="fa fa-plus" style="margin: auto; font-size: 55px; color: #c1c1c1;"></i>
                                 </div>
                                 <img id="blah" src="" style="opacity: 0;">
@@ -184,8 +92,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="closeBtn" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary" style="width:100px; font-size:20px;">
+                    <button type="button" id="closeBtn" class="btn btn-dark mb-2" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary mb-2">
                         <i class="fa fa-plus  create-btn"></i> Tạo
                     </button>
                 </div>
@@ -230,9 +138,9 @@
                             <div class="form-group" style="margin-bottom: 0">
                                 <label>Ảnh sản phẩm</label>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" id="eavatar" name="eavatar" type="file" size="1" accept="image/*" data-type="image" style="width: 97%;height: 295px;opacity: 0;position:absolute;z-index:1000;">
-                                <div id="enoimg" style="display: flex;width: 100%;height: 295px;border: 3px dashed rgb(227, 227, 227);">
+                            <div>
+                                <input class="form-control" id="eavatar" name="eavatar" type="file" size="1" accept="image/*" data-type="image" style="width: 97%;height: 320px;opacity: 0;position:absolute;z-index:1000;">
+                                <div id="enoimg" style="display: flex;width: 100%;height: 320px;border: 3px dashed rgb(227, 227, 227);">
                                     <i class="fa fa-plus" style="margin: auto; font-size: 55px; color: #c1c1c1;"></i>
                                 </div>
                                 <img id="eblah" src="" style="opacity: 0;">
@@ -241,8 +149,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="ecloseBtn" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary" style="width:100px; font-size:20px;">
+                    <button type="button" id="ecloseBtn" class="btn btn-dark mb-2" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary mb-2" style="width:100px; font-size:20px;">
                         <i class="fa fa-save save-btn"></i> Lưu
                     </button>
                 </div>
@@ -250,6 +158,7 @@
         </form>
     </div>
 </div>
+
 
 @section scripts{
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

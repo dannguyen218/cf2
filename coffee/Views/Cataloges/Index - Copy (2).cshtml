@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/cataloges.css">
+}
+
+@section headerContainer{
+    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><span>Danh Sách Danh Mục</span></li>
+}
+
+<div class="row layout-top-spacing">
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-4">
+                <table id="zero-config" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="no-content"></th>
+                            <th>Tên danh mục</th>
+                            <th class="no-content width6Percent"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbList"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/AdminLTE-3.0.4/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="~/js/lib.js"></script>
+    <script type="text/javascript">
+       var GetCataloge = "@Url.Action("GetAllCataloge", "CatalogesAPI")";
+    </script>
+    <script src="~/js/Cataloge.js"></script>
+}
+
+

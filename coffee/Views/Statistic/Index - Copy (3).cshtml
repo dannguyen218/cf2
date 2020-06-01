@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    @*<link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/daterangepicker/daterangepicker.css">*@
+    <link rel="stylesheet" href="~/daterangepicker-0.1.0/dist/daterangepicker.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    @*<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />*@
+
+    <style>
+
+        td.details-control {
+            background: url('/images/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('/images/details_close.png') no-repeat center center;
+        }
+    </style>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thống Kê</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Thống Kê</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-3">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Tìm theo khoảng ngày</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Date range -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control float-right" id="dateRangepicker">
+                            @*<button class="text-muted" id="dateRangepickerBtn">
+                                    <i class="fas fa-search"></i>
+                                </button>*@
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <!-- /.form group -->
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+
+
+        <div class="col-3">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Doanh thu</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Date range -->
+                    <div class="form-group">
+                        <h2 id="revenue"></h2>
+                    </div>
+                    <!-- /.form group -->
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Hóa đơn</h3>
+                    <a class="btn btn-primary border-0 float-right" href="javascript:;" id="excelBtn">
+                        <i class="fas fa-download" style="margin-right: 8px;"></i>Xuất excel
+                    </a>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive" style="padding-top: 0;">
+                    <table id="tbBills" class="table" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Id</th>
+                                <th>Thu ngân</th>
+                                <th>Ghi chú</th>
+                                <th>Thời gian thanh toán</th>
+                                <th>Tổng tiền</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+
+
+@section scripts{
+    <script src="~/AdminLTE-3.0.4/plugins/moment/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="~/daterangepicker-0.1.0/dist/daterangepicker.min.js"></script>
+    <script type="text/javascript">
+        var GetAllBills = "@Url.Action("GetAllBills", "StatisticAPI")";
+    </script>
+    <script src="~/js/lib.js"></script>
+    <script src="~/js/statistical.js"></script>
+    @*<script src="~/js/chart.js"></script>*@
+}
