@@ -126,16 +126,16 @@ var App = function() {
 
             });
         },
-        subCatScroll: function() {
-            const submenuSidebar = new PerfectScrollbar('#compact_submenuSidebar', {
-                wheelSpeed:.5,
-                swipeEasing:!0,
-                minScrollbarLength:40,
-                maxScrollbarLength:100,
-                suppressScrollX: true
+        //subCatScroll: function() {
+        //    const submenuSidebar = new PerfectScrollbar('#compact_submenuSidebar', {
+        //        wheelSpeed:.5,
+        //        swipeEasing:!0,
+        //        minScrollbarLength:40,
+        //        maxScrollbarLength:100,
+        //        suppressScrollX: true
 
-            });
-        },
+        //    });
+        //},
         onSidebarHover: function() {
             var getMenu = document.querySelectorAll('.menu');
 
@@ -470,7 +470,7 @@ var App = function() {
                 In Built Functionality fn
             */
             inBuiltfunctionality.mainCatActivateScroll();
-            inBuiltfunctionality.subCatScroll();
+            //inBuiltfunctionality.subCatScroll();
             inBuiltfunctionality.preventScrollBody();
             inBuiltfunctionality.languageDropdown();
             inBuiltfunctionality.onSidebarHover();

@@ -5,6 +5,27 @@
     return '<table id="' + tableId + '" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" class="table table-hover text-nowrap">' +
         '</table>';
 }
+
+
+getRevenueToday();
+function getRevenueToday() {
+    $.ajax({
+        url: GetAllBills + "/date/" + moment().format("YYYY-MM-DD") + "/" + moment().format("YYYY-MM-DD"),
+        async: false,
+        method: "GET",
+        dataType: "json",
+        contentType: "application/json"
+    }).done(function (data) {
+        var sumTotal = 0;
+        $.each(data, function (index, value) {
+            sumTotal += value.total_money;
+        });
+        $("#todayRevenue").html(addCommas(sumTotal) + " VND");
+    });
+}
+
+
+
 var table;
 var excelUrl = "/excel";
 $(document).ready(function () {
@@ -69,14 +90,10 @@ $(document).ready(function () {
                 }
             }
         ],
-        //initComplete: function () {
-        //    var sum = 0;
-        //    $("#zero-config tbody tr").find("td:eq(5)").each(function () {
-        //        sum += parseInt($(this).text().replace(/\.|VND| /gi, ""));
-        //    });
-        //    $("#revenue").html(addCommas(sum) + " VND");
-        //},
-        drawCallback: function (settings) {
+        initComplete: function (settings, json) {
+            $("#numOrders").html(json.length);
+        },
+        drawCallback: function (settings, json) {
             var sum = 0;
             $("#zero-config tbody tr").find("td:eq(5)").each(function () {
                 sum += parseInt($(this).text().replace(/\.|VND| /gi, ""));

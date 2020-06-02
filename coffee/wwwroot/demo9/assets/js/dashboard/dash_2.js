@@ -500,12 +500,12 @@ d_2C_2.render();
         Revenue Monthly | Render
     ================================
 */
-var chart1 = new ApexCharts(
-    document.querySelector("#revenueMonthly"),
-    options1
-);
+//var chart1 = new ApexCharts(
+//    document.querySelector("#revenueMonthly"),
+//    options1
+//);
 
-chart1.render();
+//chart1.render();
 
 /*
     =================================

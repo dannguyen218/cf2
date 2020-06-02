@@ -22,18 +22,22 @@ function successOrder() {
 $('#billDetail .detail-section button').click(function () {
     let note = $('#billDetail .detail-section-note input').val();
 
-    $.ajax({
-        url: "api/OrderAPI",
-        type: 'POST',
-        data: JSON.stringify({ orderList: orderList, note: note, total: total }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json"
-    }).done(function () {
-        showSuccessbyAlert("Order Thành Công");
-        successOrder();
-    }).fail(function () {
-        console.log("Lỗi order");
-    })
+    if (orderItem == '' || orderList == '') {
+        showErrorbyAlert("Vui Lòng Chọn Món");
+    } else {
+        $.ajax({
+            url: "api/OrderAPI",
+            type: 'POST',
+            data: JSON.stringify({ orderList: orderList, note: note, total: total }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function () {
+            showSuccessbyAlert("Order Thành Công");
+            successOrder();
+        }).fail(function () {
+            console.log("Lỗi order");
+        })
+    }
 });
 
 function animationGrid() {

@@ -42,61 +42,101 @@
         <h3>Thống Kê</h3>
     </div>
 </div>
+<div class="row" id="topColorBar">
+    <div class="col-4 s12 m6 l6 xl3">
+        <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text animate fadeLeft">
+            <div class="padding-4">
+                <div class="row">
+                    <div class="col s12 m7">
+                        <i class="material-icons background-round mt-5">timeline</i>
+                        <input type="text" class="form-control float-right" id="dateRangepicker">
 
-
-
-<div class="row layout-top-spacing" id="cancel-row">
-    <div class="col-xl-12 col-lg-12 col-sm-12">
-        <div class="widget-content widget-content-area br-6">
-            <div class="row">
-                <div class="col-3">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Tìm theo khoảng ngày</h3>
-                        </div>
-                        <div class="card-body">
-                            <!-- Date range -->
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="far fa-calendar-alt"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control float-right" id="dateRangepicker">
-                                    @*<button class="text-muted" id="dateRangepickerBtn">
-                                <i class="fas fa-search"></i>
-                            </button>*@
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-                            <!-- /.form group -->
-                        </div>
-                        <!-- /.card-body -->
+                        <p>Tìm theo khoảng ngày</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 s12 m6 l6 xl3">
+        <div class="card gradient-45deg-amber-amber gradient-shadow min-height-100 white-text animate fadeRight" style="padding: 3.5% 0;">
+            <div class="padding-4">
+                <div class="row">
+                    <div class="col-8 s7 m7">
+                        <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                        <span style="font-size: 1.1rem">Tổng số lượng order</span>
 
-
-                <div class="col-3">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Doanh thu</h3>
-                        </div>
-                        <div class="card-body">
-                            <!-- Date range -->
-                            <div class="form-group">
-                                <h2 id="revenue"></h2>
-                            </div>
-                            <!-- /.form group -->
-                        </div>
-                        <!-- /.card-body -->
+                    </div>
+                    <div class="col-4 s5 m5 right-align" style="margin: auto">
+                        <h5 class="mb-0 white-text" id="numOrders"></h5>
+                        @*<p class="no-margin">Growth</p>
+        <p>3,42,230</p>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="col-4 s12 m6 l6 xl3">
+        <div class="card gradient-45deg-green-teal gradient-shadow min-height-100 white-text animate fadeRight" style="padding: 1% 0;">
+            <div class="padding-4">
+                <div class="row">
+                    <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">attach_money</i>
+                        <p>Doanh Thu</p>
+                    </div>
+                    <div class="col s5 m5 right-align">
+                        <h5 class="mb-0 white-text" id="revenue"></h5>
+                        <p class="no-margin">Hôm nay</p>
+                        <p id="todayRevenue"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+@*<div class="row layout-top-spacing" id="cancel-row">
+        <div class="col-xl-12 col-lg-12 col-sm-12">
+            <div class="widget-content widget-content-area br-6">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Tìm theo khoảng ngày</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control float-right" id="dateRangepicker">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-3">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Doanh thu</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <h2 id="revenue"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
 
 
 <div class="row layout-top-spacing" id="cancel-row">
