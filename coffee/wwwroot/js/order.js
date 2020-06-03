@@ -20,25 +20,50 @@ function successOrder() {
 }
 
 $('#billDetail .detail-section button').click(function () {
-    let note = $('#billDetail .detail-section-note input').val();
-
     if (orderItem == '' || orderList == '') {
         showErrorbyAlert("Vui Lòng Chọn Món");
     } else {
-        $.ajax({
-            url: "api/OrderAPI",
-            type: 'POST',
-            data: JSON.stringify({ orderList: orderList, note: note, total: total }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json"
-        }).done(function () {
-            showSuccessbyAlert("Order Thành Công");
-            successOrder();
-        }).fail(function () {
-            console.log("Lỗi order");
-        })
+        openConfirmOrder();
+        //$.ajax({
+        //    url: "api/OrderAPI",
+        //    type: 'POST',
+        //    data: JSON.stringify({ orderList: orderList, note: note, total: total }),
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "json"
+        //}).done(function () {
+        //    showSuccessbyAlert("Order Thành Công");
+        //    successOrder();
+        //}).fail(function () {
+        //    console.log("Lỗi order");
+        //})
     }
 });
+
+$('#btnConfirmOrder').click(function () {
+    let note = $('#billDetail .detail-section-note input').val();
+    $.ajax({
+        url: "api/OrderAPI",
+        type: 'POST',
+        data: JSON.stringify({ orderList: orderList, note: note, total: total }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
+    }).done(function () {
+        $('#openConfirmOrder').modal('hide');
+        $("#confirmOrder").html("");
+        $("#confirmPrice").html("");
+        showSuccessbyAlert("Thanh Toán Thành Công");
+        successOrder();
+    }).fail(function () {
+        console.log("Lỗi order");
+    })
+});
+
+function openConfirmOrder() {
+    $('#openConfirmOrder').modal('show');
+    $("#confirmOrder").html($("#billDetail .sell-item-list").html());
+    $("#openConfirmOrder .sell-item-action").remove();
+    $("#confirmPrice").html($("#billDetail .green-meadow .float-right").html());
+};
 
 function animationGrid() {
     $('.filters ul li').click(function () {
@@ -160,13 +185,13 @@ function addBillDetail(nameItem, idItem, priceItem, imagesItem) {
                         <div class="sell-item-details">
                             <div class="sell-item-box-wrap">
                                 <div class="sell-item-content">
-                                    <div class="sell-item-content-name">
+                                    <div class="sell-item-content-name col-7">
                                         ${nameItem}
                                     </div>
-                                    <div class="sell-item-content-quantity">
+                                    <div class="sell-item-content-quantity col-1">
                                         <span class="sell-item-quantity" id="qty${idItem}">1</span>
                                     </div>
-                                    <div class="sell-item-content-price" id="price${idItem}">
+                                    <div class="sell-item-content-price col-4" id="price${idItem}">
                                         ${addCommas(priceItem)} VND
                                     </div>
                                 </div>

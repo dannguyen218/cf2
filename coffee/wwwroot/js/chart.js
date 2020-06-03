@@ -195,6 +195,7 @@ function getChart7Day() {
         dataType: "json",
         contentType: "application/json"
     }).done(function (data) {
+        console.log(data);
         arr7Day = data;
         arr7Day.forEach(function (num) {
             sum += parseInt(num) || 0;
